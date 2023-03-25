@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Scroll Animation Demo</title>
+        <style>
+            body {
+                height: 1000px;
+            }
+    
+            #box {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100px;
+                height: 100px;
+                background-color: rgba(255, 255, 255, 0);
+                transition: all 1.5s ease;
+            }
+
+            img {
+                position: absolute; top: 0; left: 0;
+                width: 100%;
+                height: 100%;
+                transition: all 1.5s ease;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div id="box"><img src="src/heart01.png"></div>
+        <script>
+            window.onload = function () {
+                var prevScrollPos = window.pageYOffset;
+                var box = document.getElementById("box");
+                var initialWidth = box.offsetWidth;
+                var initialHeight = box.offsetHeight;
+    
+                window.addEventListener("scroll", function () {
+                    var currentScrollPos = window.pageYOffset;
+    
+                    if (prevScrollPos > currentScrollPos) {
+                        // 스크롤 올릴 때
+                        box.style.width = initialWidth + "px";
+                        box.style.height = initialHeight + "px";
+                    } else {
+                        // 스크롤 내릴 때
+                        box.style.width = (initialWidth + 1400) + "px";
+                        box.style.height = (initialHeight + 1400) + "px";
+                    }
+    
+                    prevScrollPos = currentScrollPos;
+                });
+            }
+            /*
+            위 코드에서 initialWidth와 initialHeight 변수에 박스의 초기 크기를 저장합니다. 
+            그리고 스크롤 이벤트에서 이전 스크롤 위치와 현재 스크롤 위치를 비교하여 스크롤 방향을 판단하고, 
+            박스의 크기를 증가시키거나 원상복구시킵니다.
+            스크롤 올릴 때 initialWidth와 initialHeight 값을 사용하여 박스의 초기 크기로 설정하고,
+            스크롤 내릴 때 initialWidth와 initialHeight 값을 기준으로 가로, 세로 크기를 각각 100씩 증가시킵니다. 
+            즉, 스크롤 내릴 때마다 박스의 크기가 100씩 증가합니다.
+            */
+        </script>
+    </body>
+    
+    </html>
